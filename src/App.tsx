@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Button from '@mui/material/Button';
+import ResponsiveAppBar from './Components/Navbar';
+import { TextField } from '@mui/material';
+
 
 function App() {
+  
+  const [input, setInput] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <ResponsiveAppBar/>
+    <div style = {{padding: 20}}> 
+    <TextField value = {input} style = {{marginRight: 20}} id="outlined-basic" label={input} variant="outlined" onChange={(a)=>{
+      setInput(a.target.value);
+    }} />
+    <Button variant="contained" onClick={()=> {
+      setInput("");
+    }}>Clear</Button>
     </div>
+  </div>
+
   );
 }
 

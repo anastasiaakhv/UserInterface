@@ -1,19 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Second from './second';
+import Third from './third';
+
+
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+function Wrapper() {
+  const [count, setCount] = useState(0);
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <App/>
+    },
+    {
+      path: "/secondPage",
+      element: <Second count = {count} setCount = {setCount}/>
+    },
+    {
+      path: "/thirdPage",
+      element: <Third count = {count} setCount = {setCount}/>
+    }
+  ]);
+  return <RouterProvider router={router} />
+}
+
+
+
 root.render(
   <React.StrictMode>
-    <App />
+    <Wrapper/>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
